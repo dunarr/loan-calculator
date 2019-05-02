@@ -10,8 +10,8 @@ class LoanTest {
      */
     @Test
     void getAmmountTest() {
-        Loan ammount = new Loan();
-       assertEquals(2,300,3);
+        Loan loan = new Loan();
+       assertEquals(5905,loan.getAmmount(12,500,0.03f));
     }
 
     /**
@@ -21,7 +21,7 @@ class LoanTest {
     @Test
     void getDurationTest() {
         Loan duration = new Loan();
-//        assertEquals();
+        assertEquals();
     }
 
     /**
