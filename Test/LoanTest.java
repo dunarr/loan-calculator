@@ -5,19 +5,26 @@ import static org.junit.jupiter.api.Assertions.*;
 class LoanTest {
 
     @Test
-    void getAmmount() {
-
+    void getAmmountTest() {
+        Loan ammount = new Loan();
+       assertEquals();
     }
 
     @Test
-    void getDuration() {
+    void getDurationTest() {
+        Loan duration = new Loan();
+        assertEquals();
     }
 
     @Test
-    void getMonthly() {
+    void getMonthlyTest() {
+        Loan monthly = new Loan();
+        assertEquals();
     }
 
     @Test
-    void getTotal() {
+    void getTotalTest() {
+        Loan total = new Loan();
+        assertEquals();
     }
 }
