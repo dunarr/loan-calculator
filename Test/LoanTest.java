@@ -6,6 +6,7 @@ class LoanTest {
 
     @Test
     void getAmmount() {
+
     }
 
     @Test
