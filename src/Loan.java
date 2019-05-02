@@ -17,7 +17,7 @@ public class Loan {
         }
         float tm = getTm(rate);
         this.ammount = Math.round((float) (monthly * (
-                1 - (
+                1 - (1/
                         Math.pow(1 + tm, 12f * duration / 12)
                 )
         ) / tm));
