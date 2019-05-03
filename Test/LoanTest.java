@@ -81,7 +81,12 @@ class LoanTest {
             loan.getDuration(5000, 0, 0.03f);
         });
 
-        //Renvoie une exception lorsque l'intérêt surpasse la mensualité
+        //Renvoie une exception lorsqu'il n'y a pas d'emprunt
+        assertThrows(InvalidParameterException.class, () -> {
+            loan.getDuration(0, 1000, 3);
+        });
+
+        //Renvoie une exception lorsque l'emprunt ne peux pas être remboursé
         assertThrows(InvalidParameterException.class, () -> {
             loan.getDuration(24000, 1000, 3);
         });
