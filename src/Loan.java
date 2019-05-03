@@ -12,7 +12,7 @@ public class Loan {
     }
 
     public int getAmmount(int duration, int monthly, float rate) {
-        if (duration < 0 || monthly < 0 || rate < 0) {
+        if (duration <= 0 || monthly <= 0 || rate <= 0) {
             throw new InvalidParameterException();
         }
         float tm = getTm(rate);

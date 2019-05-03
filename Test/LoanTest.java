@@ -1,10 +1,10 @@
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.security.InvalidParameterException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class LoanTest {
@@ -43,7 +43,10 @@ class LoanTest {
      */
     @Test
     void getAmmountTest() {
-
+       assertEquals(5905,loan.getAmmount(12,500,0.03f));
+       assertThrows(InvalidParameterException.class,() -> {loan.getAmmount(12,0,0.03f);});
+       assertThrows(InvalidParameterException.class,() -> {loan.getAmmount(12,500,0f);});
+       assertThrows(InvalidParameterException.class,() -> {loan.getAmmount(0,500,0.03f);});
         assertEquals(5905, loan.getAmmount(12, 500, 0.03f));
     }
 
