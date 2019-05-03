@@ -95,8 +95,6 @@ class LoanTest {
         assertEquals(6, loan.getDuration(24000, 5000, 1));
 
 
-
-
     }
 
     /**
