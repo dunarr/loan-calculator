@@ -47,7 +47,6 @@ class LoanTest {
        assertThrows(InvalidParameterException.class,() -> {loan.getAmmount(12,0,0.03f);});
        assertThrows(InvalidParameterException.class,() -> {loan.getAmmount(12,500,0f);});
        assertThrows(InvalidParameterException.class,() -> {loan.getAmmount(0,500,0.03f);});
-        assertEquals(5905, loan.getAmmount(12, 500, 0.03f));
     }
 
     /**
