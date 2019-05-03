@@ -54,6 +54,7 @@ class LoanTest {
         });
 
         assertEquals(5905, loan.getAmmount(12, 500, 0.03f));
+        assertEquals(3062, loan.getAmmount(12, 500, 3f));
     }
 
     /**
@@ -72,7 +73,9 @@ class LoanTest {
             loan.getDuration(5000, 0, 0.03f);
         });
 
-        assertEquals(12, loan.getDuration(5905, 500, 0.03f));
+        assertEquals(25, loan.getDuration(24000, 1000, 0.03f));
+
+
     }
 
     /**
@@ -90,6 +93,7 @@ class LoanTest {
             loan.getMonthly(0,500, 0.03f);
         });
 
+        assertEquals(3448, loan.getMonthly(36000, 12, 0.3f));
         assertEquals(500, loan.getMonthly(5905, 12, 0.03f));
         assertEquals(110, loan.getMonthly(2400, 24, 0.1f));
     }
