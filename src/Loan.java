@@ -28,7 +28,7 @@ public class Loan {
     }
 
     public int getDuration(int ammount, int monthly, float rate) {
-        if (ammount < 0 || monthly < 0 || rate < 0) {
+        if (ammount <= 0 || monthly <= 0 || rate <= 0) {
             throw new InvalidParameterException();
         }
         float tm = getTm(rate);
@@ -42,12 +42,12 @@ public class Loan {
     }
 
     public int getMonthly(int ammount, int duration, float rate) {
-        if (ammount < 0 || duration < 0 || rate < 0) {
+        if (ammount <= 0 || duration <= 0 || rate <= 0) {
             throw new InvalidParameterException();
         }
         float tm = getTm(rate);
 
-        this.monthly = Math.round((float) ((ammount * tm) / (1 - (1 / Math.pow(1 + tm, duration)))));
+        this.monthly = Math.round( (float) (ammount * tm / (1 - 1 / Math.pow(1 + tm, duration))) );
         this.ammount = ammount;
         this.duration = duration;
         this.rate = rate;
