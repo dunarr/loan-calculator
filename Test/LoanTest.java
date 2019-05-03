@@ -43,12 +43,18 @@ class LoanTest {
      */
     @Test
     void getAmmountTest() {
+
+        //Renvoie une exception si on ne paye pas
         assertThrows(InvalidParameterException.class, () -> {
             loan.getAmmount(12, 0, 0.03f);
         });
+
+        //Renvoie une exception lorsqu'il n'y a pas de taux
         assertThrows(InvalidParameterException.class, () -> {
             loan.getAmmount(12, 500, 0f);
         });
+
+        //Renvoie une exception lorsqu'il n'y a pas de date limite
         assertThrows(InvalidParameterException.class, () -> {
             loan.getAmmount(0, 500, 0.03f);
         });
@@ -63,17 +69,27 @@ class LoanTest {
 
     @Test
     void getDurationTest() {
-        assertThrows(InvalidParameterException.class, () -> {
-            loan.getDuration(5000, 0, 0.03f);
-        });
+
+
+        //Renvoie une exception lorsqu'il n'y a pas de taux
         assertThrows(InvalidParameterException.class, () -> {
             loan.getDuration(5000, 500, 0f);
         });
+
+        //Renvoie une exception si on ne paye pas
         assertThrows(InvalidParameterException.class, () -> {
             loan.getDuration(5000, 0, 0.03f);
         });
 
+        //Renvoie une exception lorsque l'intérêt surpasse la mensualité
+        assertThrows(InvalidParameterException.class, () -> {
+            loan.getDuration(24000, 1000, 3);
+        });
+
         assertEquals(25, loan.getDuration(24000, 1000, 0.03f));
+        assertEquals(6, loan.getDuration(24000, 5000, 1));
+
+
 
 
     }
@@ -83,12 +99,18 @@ class LoanTest {
      */
     @Test
     void getMonthlyTest() {
+
+        //Renvoie une exception lorsqu'il n'y pas de date limite
         assertThrows(InvalidParameterException.class, () -> {
             loan.getMonthly(5000,0, 0.03f);
         });
+
+        //Renvoie une exception lorsqu'il n'y a pas de taux
         assertThrows(InvalidParameterException.class, () -> {
             loan.getMonthly(5000,500, 0f);
         });
+
+        //Renvoie une exception lorsqu'il n'y a pas d'emprunt
         assertThrows(InvalidParameterException.class, () -> {
             loan.getMonthly(0,500, 0.03f);
         });
