@@ -12,12 +12,18 @@ public class Loan {
     }
 
     public int getAmmount(int duration, int monthly, float rate) {
-        if (duration <= 0 || monthly <= 0 || rate <= 0) {
-            throw new InvalidParameterException();
+        if (duration <= 0) {
+            throw new InvalidParameterException("duration must be positive");
+        }
+        if (monthly <= 0) {
+            throw new InvalidParameterException("monthly must be positive");
+        }
+        if (rate <= 0) {
+            throw new InvalidParameterException("rate must be positive");
         }
         float tm = getTm(rate);
         this.ammount = Math.round((float) (monthly * (
-                1 - 1/
+                1 - 1 /
                         Math.pow(1 + tm, duration)
 
         ) / tm));
@@ -28,26 +34,40 @@ public class Loan {
     }
 
     public int getDuration(int ammount, int monthly, float rate) {
-        if (ammount <= 0 || monthly <= 0 || rate <= 0) {
-            throw new InvalidParameterException();
+        if (monthly <= 0) {
+            throw new InvalidParameterException("monthly must be positive");
+        }
+        if (rate <= 0) {
+            throw new InvalidParameterException("rate must be positive");
+        }
+        if (ammount <= 0) {
+            throw new InvalidParameterException("ammount must be positive");
         }
         float tm = getTm(rate);
-        this.duration = Math.round((float) ((Math.log(monthly / (monthly - ammount * tm))) /
-                (Math.log(1 + tm))
-        ));
-        this.ammount = ammount;
+        this.duration = Math.round((float) (Math.log(monthly / (monthly - ammount * tm)) / Math.log(1 + tm)));
+        if(this.duration == 0){
+            throw new InvalidParameterException("you can't repay a loan with these parameters");
+        }
+
+            this.ammount = ammount;
         this.monthly = monthly;
         this.rate = rate;
         return this.duration;
     }
 
     public int getMonthly(int ammount, int duration, float rate) {
-        if (ammount <= 0 || duration <= 0 || rate <= 0) {
-            throw new InvalidParameterException();
+        if (duration <= 0) {
+            throw new InvalidParameterException("duration must be positive");
+        }
+        if (rate <= 0) {
+            throw new InvalidParameterException("rate must be positive");
+        }
+        if (ammount <= 0) {
+            throw new InvalidParameterException("ammount must be positive");
         }
         float tm = getTm(rate);
 
-        this.monthly = Math.round( (float) (ammount * tm / (1 - 1 / Math.pow(1 + tm, duration))) );
+        this.monthly = Math.round((float) (ammount * tm / (1 - 1 / Math.pow(1 + tm, duration))));
         this.ammount = ammount;
         this.duration = duration;
         this.rate = rate;
